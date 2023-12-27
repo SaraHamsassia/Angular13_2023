@@ -1,1 +1,8 @@
 <p>binding works!</p>
+<h1>Titre: {{ titre }}</h1>
+<button [disabled]="status">Clliquez Ici</button>
+<button (click)="changerTitre()">Changer titre</button>
+
+<h1>two way binding</h1>
+<input type="text" [(ngModel)]="nom" />
+<h3>name binding: {{ nom }}</h3>
