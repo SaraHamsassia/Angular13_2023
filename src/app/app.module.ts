@@ -8,9 +8,10 @@ import { BindingComponent } from './binding/binding.component';
 import { FormsModule } from '@angular/forms';
 import { ProduitsComponent } from './produits/produits.component';
 import { AddProduitsComponent } from './add-produits/add-produits.component';
+import { UpdateProduitComponent } from './update-produit/update-produit.component';
 
 @NgModule({
-  declarations: [AppComponent, BindingComponent, ProduitsComponent, AddProduitsComponent],
+  declarations: [AppComponent, BindingComponent, ProduitsComponent, AddProduitsComponent, UpdateProduitComponent],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
