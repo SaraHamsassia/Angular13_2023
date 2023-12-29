@@ -1,70 +1,37 @@
 import { Injectable } from '@angular/core';
 import { Produit } from '../model/produit.model';
 import { Categorie } from '../model/categorie.model';
-
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { apiURL } from '../config';
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+};
 @Injectable({
   providedIn: 'root',
 })
 export class ProduitService {
-  produits: Produit[];
-  categories: Categorie[];
-  constructor() {
-    this.categories = [
-      { idCat: 1, nomCat: 'PC' },
-      { idCat: 2, nomCat: 'Imprimante' },
-      { idCat: 3, nomCat: 'Boulangerie' },
-    ];
-    this.produits = [
-      {
-        idProduit: 1,
-        nomProduit: 'PC Asus',
-        prixProduit: 3000.6,
-        dateCreation: new Date('01/14/2011'),
-        categorie: { idCat: 1, nomCat: 'PC' },
-      },
-      {
-        idProduit: 2,
-        nomProduit: 'Imprimante Epson',
-        prixProduit: 450,
-        dateCreation: new Date('12/17/2010'),
-        categorie: { idCat: 2, nomCat: 'Imprimante' },
-      },
-      {
-        idProduit: 3,
-        nomProduit: 'Tablette Samsung',
-        prixProduit: 900.123,
-        dateCreation: new Date('02/20/2020'),
-        categorie: { idCat: 1, nomCat: 'PC' },
-      },
-      {
-        idProduit: 4,
-        nomProduit: 'Baguette',
-        prixProduit: 1.5,
-        dateCreation: new Date('02/20/2023'),
-        categorie: { idCat: 3, nomCat: 'Boulangerie' },
-      },
-    ];
+  
+  produits!: Produit[];
+  constructor(private http: HttpClient) {
   }
 
-  listeProduits(): Produit[] {
-    return this.produits;
+  listeProduits(): Observable<Produit[]> {
+    return this.http.get<Produit[]>(apiURL);
   }
 
-  ajouterProduit(prod: Produit) {
-    this.produits.push(prod);
+  ajouterProduit(prod: Produit): Observable<Produit> {
+    return this.http.post<Produit>(apiURL, prod, httpOptions);
   }
 
-  supprimerProduit(prod: Produit) {
-    //supprimer le produit prod du tableau produits
-    this.produits.forEach((cur, index) => {
-      if (prod.idProduit === cur.idProduit) {
-        this.produits.splice(index, 1);
-      }
-    });
+  supprimerProduit(id: number) {
+    const url = `${apiURL}/${id}`;
+    return this.http.delete(url, httpOptions);
   }
 
-  consulterProduit(id: number): Produit {
-    return this.produits.find((p) => p.idProduit == id)!;
+  consulterProduit(id: number): Observable<Produit> {
+    const url = `${apiURL}/${id}`;
+    return this.http.get<Produit>(url);
   }
 
   trierProduits() {
@@ -79,17 +46,12 @@ export class ProduitService {
     });
   }
 
-  updateProduit(p: Produit) {
-    this.supprimerProduit(p);
-    this.ajouterProduit(p);
-    this.trierProduits();
+  updateProduit(prod: Produit): Observable<Produit> {
+    return this.http.put<Produit>(apiURL, prod, httpOptions);
   }
 
-  listeCategories(): Categorie[] {
-    return this.categories;
-  }
-
-  consulterCategorie(id: number): Categorie {
-    return this.categories.find((cat) => cat.idCat == id)!;
-  }
+  listeCategories():Observable<Categorie[]>{
+    return this.http.get<Categorie[]>(apiURL+"/cat");
+    }
+    
 }

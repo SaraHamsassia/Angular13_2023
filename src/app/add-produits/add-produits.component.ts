@@ -19,16 +19,16 @@ export class AddProduitsComponent implements OnInit {
     this.message = '';
   }
   addProduit() {
-    console.log(this.newIdCat);
-    this.newCategorie = this.produitService.consulterCategorie(this.newIdCat);
-    this.newProduit.categorie = this.newCategorie;
-    this.produitService.ajouterProduit(this.newProduit);
-    this.message =
-      'Le produit ' + this.newProduit.nomProduit + ' a été ajouté avec succès.';
-    this.router.navigate(['produits']);
+    this.newProduit.categorie = this.categories.find(cat => cat.idCat == this.newIdCat)!;
+    this.produitService.ajouterProduit(this.newProduit).subscribe((prod) => {
+      this.router.navigate(['produits']);
+    });
   }
 
   ngOnInit(): void {
-    this.categories = this.produitService.listeCategories();
+    this.produitService.listeCategories().subscribe((cats) => {
+      this.categories = cats;
+      console.log(cats);
+    });
   }
 }
