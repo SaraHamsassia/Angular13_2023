@@ -27,7 +27,7 @@ export class UpdateProduitComponent implements OnInit {
         this.updatedCatId = this.currentProduit.categorie.idCat;
       });
     this.produitService.listeCategories().subscribe((cats) => {
-      this.categories = cats;
+      this.categories = cats._embedded.categories;
       console.log(cats);
     });
   }
