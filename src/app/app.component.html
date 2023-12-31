@@ -15,21 +15,14 @@
             <li class="nav-item">
                 <a class="nav-link" routerLink="/produits">Home</a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" routerLink="/categorie">Catégories</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" routerLink="add-produits">Ajouter</a>
-                    <a class="dropdown-item" href="#">Lister les produits</a>
-                    <a class="dropdown-item" routerLink="/rechercheParCategorie">Recherche Par Catégorie</a>
-                    <a class="dropdown-item" routerLink="/rechercheParNom">Recherche Par Nom</a>
-                </div>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/categorie">Catégories</a>
             </li>
             <!-- Dropdown -->
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Produits</a>
+                <a class="nav-link dropdown-toggle" routerLink="/produits" id="navbardrop" data-toggle="dropdown">Produits</a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item" routerLink="add-produits">Ajouter</a>
-                    <a class="dropdown-item" href="#">Lister les produits</a>
                     <a class="dropdown-item" routerLink="/rechercheParCategorie">Recherche Par Catégorie</a>
                     <a class="dropdown-item" routerLink="/rechercheParNom">Recherche Par Nom</a>
                 </div>
