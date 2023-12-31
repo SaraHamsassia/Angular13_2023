@@ -5,6 +5,7 @@ import { AddProduitsComponent } from './add-produits/add-produits.component';
 import { UpdateProduitComponent } from './update-produit/update-produit.component';
 import { RechercheParCategorieComponent } from './recherche-par-categorie/recherche-par-categorie.component';
 import { RechercheParNomComponent } from './recherche-par-nom/recherche-par-nom.component';
+import { ListeCategoriesComponent } from './liste-categories/liste-categories.component';
 
 const routes: Routes = [
   { path: 'produits', component: ProduitsComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'updateProduit/:id', component: UpdateProduitComponent },
   { path: 'rechercheParCategorie', component: RechercheParCategorieComponent },
   { path: 'rechercheParNom', component: RechercheParNomComponent },
+  { path: 'categorie', component: ListeCategoriesComponent },
 ];
 
 @NgModule({

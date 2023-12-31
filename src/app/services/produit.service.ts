@@ -28,6 +28,11 @@ export class ProduitService {
     return this.http.delete(url, httpOptions);
   }
 
+  supprimerCategorie(id: number) {
+    const url = `${apiURLCat}/${id}`;
+    return this.http.delete(url, httpOptions);
+  }
+
   consulterProduit(id: number): Observable<Produit> {
     const url = `${apiURL}/${id}`;
     return this.http.get<Produit>(url);
@@ -61,5 +66,8 @@ export class ProduitService {
   rechercherParNom(nom: string): Observable<Produit[]> {
     const url = `${apiURL}/prodsByName/${nom}`;
     return this.http.get<Produit[]>(url);
+  }
+  ajouterCategorie(cat: Categorie): Observable<Categorie> {
+    return this.http.post<Categorie>(apiURLCat, cat, httpOptions);
   }
 }
