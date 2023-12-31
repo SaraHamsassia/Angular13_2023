@@ -52,4 +52,14 @@ export class ProduitService {
   listeCategories(): Observable<CategorieWrapper> {
     return this.http.get<CategorieWrapper>(apiURLCat);
   }
+
+  rechercherParCategorie(idCat: number): Observable<Produit[]> {
+    const url = `${apiURL}/prodscat/${idCat}`;
+    return this.http.get<Produit[]>(url);
+  }
+
+  rechercherParNom(nom: string): Observable<Produit[]> {
+    const url = `${apiURL}/prodsByName/${nom}`;
+    return this.http.get<Produit[]>(url);
+  }
 }
